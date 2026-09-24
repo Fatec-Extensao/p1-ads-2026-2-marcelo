@@ -1,0 +1,491 @@
+S.O
+Debian 12
+
+O Debian é uma distribuição do Linux, onde estamos atualmente testando comandos dentro do app terminal (app padrão do linux)
+O s.o em questão tem 2 formas a forma gráfica que tem a interface do debian normal e a texto onde pode ser alternado com o atalho CRTL + ALT + F2 ao F6 onde as interfaces de texto são utilizadas unicamente pra executar comandos
+usuario -> usuário padrão do sistema sem muitas permisões de comandos
+superusuário (root): usuário capaz de livremente acessar e editar qualquer diretório no disco e também capaz de executar todos os comandos no terminam se restrição.
+
+como acessar:
+
+no terminal digitar (su -) ou (su root) e depois digitar a senha (no caso ta de 1 a 8 no pc da fatec)
+
+sobre os diretorios - no linux os diretórios seguem um padrão diferente do windows (exemplo seria o disco raiz do windows é a C:\) já no linux é o diretório (/) e dessa raiz podemos ir para alguns caminhos, os principais sendo: root, home, etc.
+
+um exemplo de caminho ficaria:
+
+/home/fateclins/documents
+raiz, pagina usuario, usuário, documentos
+
+Comandos terminal
+
+man [nome do comando] - manual do comando explicando o que o mesmo faz e quais são os comandos adicionais
+
+nota: todos os comandos adicionais precisam do (-) ou (--) antes senao nao vai, qualquer coisa usa o comando man pra ver. e o botão TAB pode ser usado pra completar comandos pra agilizar o processo enquanto digita. 
+
+ls - lista os arquivos do diretorio atual ou especificado
+sintaxe: ls [nome do diretorio]
+usamos mais o comando ls -lh pra listar os arquivos em forma de lista (l) e "human readable" (h) em resumo de uma forma mais facil de uma pessoa entender
+usando o -a ele lista até os arquivos ocultos
+----------------------------------------------------------------------------------------------------------------------------------
+exit - sai do usuário root
+halt - usado pra desligar o sistema ou interromper um processo
+reboot - serve pra reiniciar o sistema
+shutdown - desligar/ reiniciar a maquina
+pwd - mostra o diretorio atual
+touch - cria arquivos vazios
+clear - limpa o console do terminal
+echo - serve pra exibir texto para a interface
+history - mostra os comandos usados
+----------------------------------------------------------------------------------------------------------------------------------
+mkdir - cria um diretório podendo especificar onde criar ou no diretorio atual
+rmdir - deleta um ou mais diretórios
+cd - troca o diretorio
+pode se usar o caminho absoluto (digitar o caminho completo na sintaxe: /root [para ir pra pasta root] ou pode usar o caminho relativo, considerando que estamos no diretório do exemplo: /home/fateclins/documents podemos usar o (../) para  voltar um diretório ou digitar o nome do diretório seguinte para ir para ele (cadastros/) e ele vai para o diretório /home/fateclins/documents/cadastros/
+
+caminho absoluto = caminho completo até o diretório
+caminho relativo = caminho partindo do diretório atual
+----------------------------------------------------------------------------------------------------------------------------------
+cp - copiar arquivos
+mv - mover arquivos
+rm - deleta arquivos (se vc tiver muita vontade ele apaga até a raiz)
+
+----------------------------------------------------------------------------------------------------------------------------------
+na manipulação de caracteres podem ser usados os caracteres "*" e "?" para exemplificar o seguinte:
+* representa vários caracteres
+um exemplo seria listar todos os arquivos numa pasta com um determinado nome que comece em um numero definido por você e que tenha N numero de caracteres onde citado
+
+ls *.txt
+e ele vai citar todos os arquivos que terminem em .txt (lembrando que no esse .txt é so estetico pq ele nao significa extensão)
+
+? representa somente um caractere
+exemplo
+
+temos os seguintes arquivos:
+a1, a2, a5, a9 e a21
+
+ls a?
+e ele mostra o seguinte:
+
+a1
+a2
+a5
+a9
+-------------------------------------------------------------------------------------------------------------------------------------
+cat - mostra o conteudo de um arquivo de texto
+more - pagina a visualização do arquivo de texto (espaço ou enter pra manipular)
+less - pagina a visualização do arquivo de texto mas em uma janela diferente
+tac - cat ao contrario (literalmente)
+sort - mostra o conteudo de um arquivo de texto organizado de a-z ou usando o -r de z-a
+wc - significa word count (“contagem de palavras”). Ele serve para contar linhas, palavras, caracteres, bytes de arquivos ou textos.
+head - mostra as 10 primeiras linhas do arquivo de texto ou a quantidade definida na sintaxe adicional -n(numero)
+tail - mostra as 10 ultimas linhas do arquivo de texto ou a quantidade definida na sintaxe adicional -n(numero)
+
+-------------------------------------------------------------------------------------------------------------------------------------
+grep - serve para procurar textos/padrões dentro de arquivos ou saídas de comandos.
+
+find -name "x"	Busca por nome
+find -type f	Busca arquivos
+find -type d	Busca diretórios
+find -size +10M	Busca por tamanho
+find -mtime -1	Modificados hoje
+find -delete	Remove resultados
+
+-------------------------------------------------------------------------------------------------------------------------------------
+find - serve para procurar arquivos e diretórios.
+
+Ele permite buscar por:
+
+nome
+extensão
+tamanho
+permissões
+data
+tipo de arquivo
+etc.
+------------------------------------------------------------------------------------------------------------------------------------
+ln - Ele funciona como um “atalho” ou uma referência para outro arquivo
+
+exemplo: 
+
+ln arquivo_original novo_link
+
+Agora atalho.txt aponta para documento.txt.
+
+Se abrir um, acessa o mesmo conteúdo.
+------------------------------------------------------------------------------------------------------------------------------------
+umask - serve para definir as permissões padrão de novos arquivos e diretórios criados no sistema (normalmente ele vem com o 0022)
+chmod - altera permissão de arquivo
+chown - troca a posse do arquivo (user, group, other)
+
+usamos a regra do octal para definir o grupo de permissões.
+
+R = Read (ler)
+W = Write (escrever)
+X = Execute (executar)
+
+0 - "- - -"
+1 - "- - x"
+2 - "- w -"
+3 - "- w x"
+4 - "r - -"
+5 - "r - x"
+6 - "r w -"
+7 - "r w x"
+
+O padrão do linux é vir 644 
+
+então no arquivo ficaria
+
+- rw- r-- r--
+0  6   4   4
+
+0/user/group/other -> nessa ordem
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+ 
+
+Engenharia de software
+
+Diagrama de caso de uso:
+
+Usado para definir o que cada ator no sistema poderá realizar seguindo um fluxo principal ou um fluxo alternativo, se atentando as possibilidades de erros ou de caminhos diferentes para alcançar o objetivo da função exemplificada.
+extend serve para executar uma função extra/opcional no fluxo dependendo da condição ou das permissões do determinado autor (user stories).
+include serve pra usar um outro caso de uso como parte do processo para executar a função.
+Está sendo discutido e trabalhado UML (padrão de diagramar funções do app a ser desenvolvido, a fim de padronizar a criação de um software por meio de um fluxo principal tendo tanto funções que seguem o fluxo principal e entregam diferentes respostas de acordo com a função especificada)
+
+Diagrama de classe:
+
+Objeto = classe (são a mesma coisa nesse conceito de diagrama de classe)
+
+Definido o objeto ele terá as suas caracteristicas (atributo), especificações (tipo), nome e funcões (Metodos), podendo estar ligado a outros objetos para definir sua função no programa.
+
+Um exemplo pode ser o objeto "pessoa";
+
+Pessoa
+Caracteristicas: nome, cpf, telefone, endereço, idade
+tipo: caractere (nome), cpf (caractere ou inteiro[usa caratere vai por mim]), telefone (mesmo caso do cpf), endereço (caractere), idade (inteiro)
+Métodos: cadastrar usuário, excluir usuário, gerar senha, salvar uma resposta
+
+essa uml é diretamente orientada a objetos e é complementar ao projeto para continuidade do mesmo, então grande parte dos projetos usam mais de um tipo de diagrama.
+vale ressaltar que ela usa bastante pra backend pois planeja filtros para banco de dados, ficando mais fácil de manusear os dados posteriormente.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+Arquitetura de software
+
+mapa de karnaugh - vou explicar o conceito em video e postar pq acho que num arquivo de texto nao ficaria legal e tem os slides que o maciel postou no classroom como apoio
+
+
+Algoritmo e logica de programação
+
+vetor - define um determinado numero de variáveis dentro da mesma variável.
+Em vez de criar várias variáveis:
+
+nota1, nota2, nota3
+
+você cria:
+
+notas[1..3]
+
+Um vetor funciona como uma “lista organizada”.
+
+Cada posição possui um índice.
+---------------------------------------------------------
+algoritmo "vetor"
+
+var
+   numeros : vetor[1..5] de inteiro
+
+inicio
+
+   numeros[1] <- 10
+   numeros[2] <- 20
+   numeros[3] <- 30
+
+   escreval(numeros[1])
+   escreval(numeros[2])
+   escreval(numeros[3])
+
+fimalgoritmo
+----------------------------------------------------
+numeros[1]
+
+significa:
+
+“pegue o valor da posição 1”
+
+
+----------------------------------------------------
+
+Exemplo lendo vários números
+algoritmo "ler_vetor"
+
+var
+   n : vetor[1..5] de inteiro
+   i : inteiro
+
+inicio
+
+   para i de 1 ate 5 faca
+      escreva("Digite um numero: ")
+      leia(n[i])
+   fimpara
+
+   escreval("Valores digitados:")
+
+   para i de 1 ate 5 faca
+      escreval(n[i])
+   fimpara
+
+fimalgoritmo
+
+comandos
+
+---------------------------------------------------
+enquanto - condiciona o algoritmo a executar um comando novamente até a condição estiver falsa
+
+exemplo:
+
+algoritmo "tentar de novo"
+
+var
+t: caractere
+
+t = S
+
+  enquanto (t = S) faça
+    escreval ("tentar de novo? S/N);
+    leia (t);
+
+  fimenquanto
+
+fimalgoritmo
+
+
+--------------------------------------------------
+caso - funciona como uma condição que executa um comando com base nas opções descritas
+
+um exemplo:
+
+algoritmo "caso"
+
+var
+   opcao : inteiro
+
+inicio
+
+   escreva("Digite uma opcao: ")
+   leia(opcao)
+
+   caso opcao seja
+
+      1:
+         escreval("Voce escolheu jogar")
+
+      2:
+         escreval("Voce escolheu configuracoes")
+
+      3:
+         escreval("Voce escolheu sair")
+
+   outrocaso
+      escreval("Opcao invalida")
+
+   fimcaso
+
+fimalgoritmo
+
+
+um algoritmo que ela passou é um bom exemplo:
+
+
+Algoritmo "Adquirir apólice(Caso)"
+
+// Descrição   : Verificar codigo do seguro (caso)
+
+// Uma companhia de seguros tem três categorias de seguros
+// baseadas na idade e ocupação do segurado. Somente pessoas
+// com pelo menos 18 anos e não mais de 70 anos podem adquirir
+// apólices de seguros. Quanto às classes de ocupações foram
+// definidos três grupos de risco. A tabela a seguir fornece as
+// categorias em função da faixa de idade e do grupo de risco:
+
+
+//  Idade                   Grupo de Risco
+//                 Baixo         Médio     Alto
+// 18 a 24          7             8         9
+// 25 a 40          4             5         6
+// 41 a 70          1             2         3
+
+// Faça um programa que receba a idade e o grupo de risco
+//( B, M ou A) e determine e mostre na tela o código do seguro.
+
+var
+   idade: inteiro
+   risco: caractere
+   codigo: inteiro
+
+inicio
+   escreva("Digite a idade: ")
+   leia(idade)
+
+   // Validação da idade
+   se (idade < 18) ou (idade > 70) entao
+      escreva("Não pode adquirir seguro")
+
+   senao
+      escreva("Digite o grupo de risco (B, M ou A): ")
+      leia(risco)
+
+      // Faixa 18 a 24
+      se (idade <= 24) entao
+         escolha risco
+            caso "B"
+               codigo <- 7
+            caso "M"
+               codigo <- 8
+            caso "A"
+               codigo <- 9
+            outrocaso
+               escreva("Grupo de risco inválido")
+         fimescolha
+
+      senao
+         // Faixa 25 a 40
+         se (idade <= 40) entao
+            escolha risco
+               caso "B"
+                  codigo <- 4
+               caso "M"
+                  codigo <- 5
+               caso "A"
+                  codigo <- 6
+               outrocaso
+                  escreva("Grupo de risco inválido")
+            fimescolha
+
+         senao
+            // Faixa 41 a 70
+            escolha risco
+               caso "B"
+                  codigo <- 1
+               caso "M"
+                  codigo <- 2
+               caso "A"
+                  codigo <- 3
+               outrocaso
+                  escreva("Grupo de risco inválido")
+            fimescolha
+         fimse
+      fimse
+
+      // Exibe só se for válido
+      se ( (risco = "B") ou (risco = "M") ou (risco = "A") ) entao
+         escreva("Código do seguro: ", codigo)
+      fimse
+
+   fimse
+
+fimalgoritmo
+
+-------------------------------------------------------------------------------------------
+
+
+para - serve para repetir o comando uma quantidade definida de vezes
+
+um exemplo pode ser uma soma de varios numeros
+algoritmo "soma"
+
+var
+   i, soma : inteiro
+
+inicio
+
+   soma <- 0
+
+   para i de 1 ate 5 faca
+      soma <- soma + i
+   fimpara
+
+   escreval("Soma = ", soma)
+
+fimalgoritmo
+
+-------------------------------------------------------------------------------------------
+
+
+compr - verifica e armazena o comprimento da linha de caracteres da variável
+
+algoritmo "comprimento"
+
+var
+   nome : caractere
+
+inicio
+
+   nome <- "Gustavo"
+
+   escreval(compr(nome))
+
+fimalgoritmo
+
+ele vai armazenar "7" porque "Gustavo" tem 7 caracteres e lembrando que o espaço conta como caractere em caso de nome composto
+
+-------------------------------------------------------------------------------------------
+
+copia - serve pra copiar parte do texto de uma linha a partir de uma posição.
+
+Sintaxe: copia(texto, inicio, quantidade)
+
+Exemplo: 
+
+algoritmo "copia"
+
+var
+   nome : caractere
+
+inicio
+
+   nome <- "Gustavo"
+
+   escreval(copia(nome,1,3))
+
+fimalgoritmo
+
+ele vai retornar "Gus"
+
+G u s t a v o
+1 2 3 4 5 6 7
+
+Começou na posição 1 e copiou 3 caracteres.
+
+-------------------------------------------------------------------------------------------
+
+
+randi - é uma função usada para gerar números aleatórios inteiros.
+
+ex:
+
+algoritmo "sorteio"
+
+var
+   sorteado : inteiro
+
+inicio
+
+   sorteado <- randi(100) + 1
+
+   escreval("Numero sorteado: ", sorteado)
+
+fimalgoritmo
+
+P.s: o (100) + 1 é porque o mesmo considera o 0 ao 99, e passa a contar do 1 ao 100.
+
+-------------------------------------------------------------------------------------------
+
+P.I (objetivo da vez)
+
+Estamos estudando quais linguagens de programação e frameworks podem ser usadas pra desenvolver o frontend e o backend do aplicativo web
